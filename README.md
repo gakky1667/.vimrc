@@ -1,7 +1,4 @@
-FastCSV
-Versuin 0.8
-
-configuration file of vim
+###configuration file of vim
 　
 #Install
 ```sh
