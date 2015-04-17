@@ -1,5 +1,4 @@
-"--------------------------
-"
+"---------------------------
 "tart Neobundle Settings.
 "---------------------------
 " bundleで管理するディレクトリを指定
@@ -20,8 +19,6 @@ NeoBundle 'Shougo/unite.vim'
 " Unite.vimで最近使ったファイルを表示できるようにする
 NeoBundle 'Shougo/neomru.vim'
 
-NeoBundle "git://github.com/Shougo/vimproc"
-
 """"""""""""""""""""""""""""""
 " Unit.vimの設定
 """"""""""""""""""""""""""""""
@@ -38,28 +35,6 @@ noremap :uff :<C-u>UniteWithBufferDir file -buffer-name=file<CR>
 " ESCキーを2回押すと終了する
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
-" insert modeで開始
-let g:unite_enable_start_insert = 1
-
-" 大文字小文字を区別しない
-let g:unite_enable_ignore_case = 1
-let g:unite_enable_smart_case = 1
-
-" grep検索
-nnoremap <silent> ,g  :<C-u>Unite grep -buffer-name=search-buffer<CR>
-
-" カーソル位置の単語をgrep検索
-nnoremap <silent> ,cg :<C-u>Unite grep -buffer-name=search-buffer<CR><C-R><C-W>
-
-" grep検索結果の再呼出
- nnoremap <silent> ,r  :<C-u>UniteResume search-buffer<CR>
-
-" unite grep に ag(The Silver Searcher) を使う
-if executable('ag')
-  let g:unite_source_grep_command = 'ag'
-	let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
-  let g:unite_source_grep_recursive_opt = ''
-endif
 """"""""""""""""""""""""""""""
 
 """""""""" vim-quickrun""""""""""""
@@ -108,10 +83,11 @@ let g:tagbar_type_go = {
 " ファイルをtree表示してくれる
 NeoBundle 'scrooloose/nerdtree'
 
-" Ctrl + e でtree表示
-nnoremap <silent><C-e> :NERDTreeToggle<CR>
 " Rails向けのコマンドを提供する
 NeoBundle 'tpope/vim-rails'
+
+" Ctrl + e でtree表示
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
 " Ruby向けにendを自動挿入してくれる
 NeoBundle 'tpope/vim-endwise'
@@ -228,12 +204,57 @@ highlight LineNr ctermfg=darkyellow
 set laststatus=2
 " ステータス行に表示させる情報の指定(どこからかコピペしたので細かい意味はわかっていない)
 set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
-"随時検索を行う
+" 随時検索を行う
 set incsearch
-" grep検索を可能にする
-set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m,%f
-" 外部grepコマンドを可能にする
-set grepprg =grep\ -nh
+
+" -----tab----- "
+nnoremap s <Nop>
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
+nnoremap sh <C-w>h
+nnoremap sJ <C-w>J
+nnoremap sK <C-w>K
+nnoremap sL <C-w>L
+nnoremap sH <C-w>H
+" 次のタブに移動 "
+nnoremap sn gt
+" 前のタブに移動 "
+nnoremap sp gT
+" 回転 "
+nnoremap sr <C-w>r
+nnoremap s= <C-w>=
+" swで次に移動 "
+nnoremap sw <C-w>w
+nnoremap so <C-w>_<C-w>|
+nnoremap sO <C-w>=
+nnoremap sN :<C-u>bn<CR>
+nnoremap sP :<C-u>bp<CR>
+" 新規タブ "
+nnoremap st :<C-u>tabnew<CR>
+" タブ一覧 "
+nnoremap sT :<C-u>Unite tab<CR>
+" ssで水平分割 "
+nnoremap ss :<C-u>sp<CR> 
+" svで垂直分割 "
+nnoremap sv :<C-u>vs<CR>
+" ウィンドを閉じる "
+nnoremap sq :<C-u>q<CR>
+" バッファを閉じる "
+nnoremap sQ :<C-u>bd<CR>
+" 現在のタブで開いたバッファ一覧 "
+nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
+" バッファ一覧"
+nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
+
+"call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
+"call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
+"call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
+"call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
+"call submode#map('bufmove', 'n', '', '>', '<C-w>>')
+"call submode#map('bufmove', 'n', '', '<', '<C-w><')
+"call submode#map('bufmove', 'n', '', '+', '<C-w>+')
+"call submode#map('bufmove', 'n', '', '-', '<C-w>-')
 
 " -----Plugin----- "
 call neobundle#end()
