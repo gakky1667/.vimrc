@@ -2,7 +2,7 @@ FastCSV
 Versuin 0.8
 
 configuration file of vim
-
+　
 Install
 mkdir -p ~/.vim/bundle
 git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
