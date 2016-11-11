@@ -2,8 +2,9 @@
 　
 # Install
 ```sh
-$ chmod +x setup.sh
+$ cd vimrc
 $ ./setup.sh
+$ vim #installが始まります
 ```
 
 # How to use
