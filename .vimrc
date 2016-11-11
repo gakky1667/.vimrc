@@ -1,4 +1,3 @@
-"test gakky
 "---------------------------
 " start Neobundle Settings.
 "---------------------------
@@ -19,8 +18,6 @@ set backspace=indent,eol,start
 NeoBundle 'Shougo/unite.vim'
 " Unite.vimで最近使ったファイルを表示できるようにする
 NeoBundle 'Shougo/neomru.vim'
-" Unite.vimでgrep環境の改善
-NeoBundle "git://github.com/Shougo/vimproc"
 
 """"""""""""""""""""""""""""""
 " Unit.vimの設定
@@ -76,35 +73,6 @@ let g:quickrun_config.go = {
 			\ 'hook/output_encode/encoding': 'utf-8',
 			\ 'hook/cd/directory': '%S:p:h'}
 
-"""""""""" vim-gocode""""""""""
-NeoBundleLazy 'Blackrush/vim-gocode', {'autoload': {'filetypes': ['go']}}
-
-"""""""""" gocode""""""""""""
-if $GOROOT != ''
-	set rtp+=$GOROOT/misc/vim
-endif
-exe "set rtp+=" . globpath($GOPATH,"src/github.com/golang/lint/misc/vim")
-set completeopt=menu,preview
-
-let g:vim_bootstrap_langs = "go"
-NeoBundle "majutsushi/tagbar"
-NeoBundle "fatih/vim-go"
-
-nmap <silent> <F4> :TagbarToggle<CR>
-let g:tagbar_autofocus = 1
-
-let g:tagbar_type_go = {
-			\ 'ctagstype' : 'go',
-			\ 'kinds'     : [  'p:package', 'i:imports:1', 'c:constants', 'v:variables',
-			\ 't:types',  'n:interfaces', 'w:fields', 'e:embedded', 'm:methods',
-			\ 'r:constructor', 'f:functions' ],
-			\ 'sro' : '.',
-			\ 'kind2scope' : { 't' : 'ctype', 'n' : 'ntype' },
-			\ 'scope2kind' : { 'ctype' : 't', 'ntype' : 'n' },
-			\ 'ctagsbin'  : 'gotags',
-			\ 'ctagsargs' : '-sort -silent'
-			\ }
-
 
 " ファイルをtree表示してくれる
 NeoBundle 'scrooloose/nerdtree'
@@ -125,7 +93,7 @@ NeoBundle 'vim-scripts/AnsiEsc.vim'
 NeoBundle 'tomtom/tcomment_vim'
 
 " インデントに色を付けて見やすくする
-NeoBundle 'nathanaelkane/vim-indent-guides'
+"NeoBundle 'nathanaelkane/vim-indent-guides'
 
 " vimを立ち上げたときに、自動的にvim-indent-guidesをオンにする
 let g:indent_guides_enable_on_vim_startup = 1
@@ -233,6 +201,7 @@ set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V
 " 随時検索を行う
 set incsearch
 
+set pumheight=10
 " -----tab----- "
 nnoremap s <Nop>
 nnoremap sj <C-w>j
@@ -272,6 +241,8 @@ nnoremap sQ :<C-u>bd<CR>
 nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
 " バッファ一覧"
 nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
+
+colorscheme molokai
 
 "call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
 "call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
